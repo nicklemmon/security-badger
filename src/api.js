@@ -9,6 +9,7 @@ const {
 
 function getSecurityVulnerabilities() {
   const repoArr = GITHUB_REPOSITORY.split('/')
+  console.log('repoArr', repoArr)
   const query = `query {
     repository(owner: "${repoArr[0]}", name: "${repoArr[1]}") {
       vulnerabilityAlerts(first: 99) {
