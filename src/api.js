@@ -1,7 +1,6 @@
 const axios = require('axios')
 const {
   GITHUB_API_URL,
-  GITHUB_ORGANIZATION,
   GITHUB_REPOSITORY,
   GITHUB_TOKEN,
   SLACK_CHANNEL,
@@ -9,8 +8,9 @@ const {
 } = require('./constants.js')
 
 function getSecurityVulnerabilities() {
+  const repoArr = GITHUB_REPOSITORY.split('/')
   const query = `query {
-    repository(owner: "${GITHUB_ORGANIZATION}", name: "${GITHUB_REPOSITORY}") {
+    repository(owner: "${repoArr[0]}", name: "${repoArr[1]}") {
       vulnerabilityAlerts(first: 99) {
         edges {
           node {
