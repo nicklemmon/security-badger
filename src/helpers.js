@@ -1,5 +1,6 @@
 // TODO: can't this be done within the GraphQL query itself?
 function formatVulnerabilityAlerts(data) {
+  console.log('data', data)
   const {
     repository: {
       vulnerabilityAlerts: { edges },
