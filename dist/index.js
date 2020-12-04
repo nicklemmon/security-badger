@@ -1505,7 +1505,6 @@ module.exports = /******/ (function (modules, runtime) {
       const axios = __webpack_require__(53)
       const {
         GITHUB_API_URL,
-        GITHUB_ORGANIZATION,
         GITHUB_REPOSITORY,
         GITHUB_TOKEN,
         SLACK_CHANNEL,
@@ -1513,8 +1512,9 @@ module.exports = /******/ (function (modules, runtime) {
       } = __webpack_require__(648)
 
       function getSecurityVulnerabilities() {
+        const repoArr = GITHUB_REPOSITORY.split('/')
         const query = `query {
-    repository(owner: "${GITHUB_ORGANIZATION}", name: "${GITHUB_REPOSITORY}") {
+    repository(owner: "${repoArr[0]}", name: "${repoArr[1]}") {
       vulnerabilityAlerts(first: 99) {
         edges {
           node {
@@ -2658,7 +2658,6 @@ module.exports = /******/ (function (modules, runtime) {
 
     /***/ 648: /***/ function (module) {
       const GITHUB_API_URL = 'https://api.github.com/graphql'
-      const GITHUB_ORGANIZATION = process.env.GITHUB_ORGANIZATION
       const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY
       const GITHUB_TOKEN = process.env.GITHUB_TOKEN
       const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL
@@ -2666,7 +2665,6 @@ module.exports = /******/ (function (modules, runtime) {
 
       module.exports = {
         GITHUB_API_URL,
-        GITHUB_ORGANIZATION,
         GITHUB_REPOSITORY,
         GITHUB_TOKEN,
         SLACK_WEBHOOK_URL,
