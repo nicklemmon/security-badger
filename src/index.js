@@ -13,6 +13,8 @@ async function start() {
   const { data } = await getSecurityVulnerabilities()
   const vulnerabilityAlerts = formatVulnerabilityAlerts(data)
 
+  if (!vulnerabilityAlerts) return console.log('No security vulnerabilities found.')
+
   if (vulnerabilityAlerts.length > 0) {
     const introMsg = getIntroMsg(vulnerabilityAlerts.length)
 

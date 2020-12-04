@@ -852,25 +852,29 @@ module.exports = /******/ (function (modules, runtime) {
 
     /***/ 197: /***/ function (module) {
       // TODO: can't this be done within the GraphQL query itself?
+      // This is really fugly as a result...
       function formatVulnerabilityAlerts(data) {
-        console.log('data', data)
-        // const {
-        //   repository: {
-        //     vulnerabilityAlerts: { edges },
-        //   },
-        // } = data
+        const { repository } = data
 
-        // return edges.map(edge => {
-        //   const advisory = edge.node.securityAdvisory
-        //   const { vulnerabilities, ...rest } = advisory
-        //   const firstVulnerabilityNode = vulnerabilities.edges[0].node
-        //   const vulnerableVersionRange = firstVulnerabilityNode.vulnerableVersionRange
+        if (!repository) return console.log('No repository found')
 
-        //   return {
-        //     ...rest,
-        //     versionRange: vulnerableVersionRange,
-        //   }
-        // })
+        const { vulnerabilityAlerts } = repository
+
+        if (!vulnerabilityAlerts) return console.log('No vulnerability alerts found')
+
+        const { edges } = vulnerabilityAlerts
+
+        return edges.map(edge => {
+          const advisory = edge.node.securityAdvisory
+          const { vulnerabilities, ...rest } = advisory
+          const firstVulnerabilityNode = vulnerabilities.edges[0].node
+          const vulnerableVersionRange = firstVulnerabilityNode.vulnerableVersionRange
+
+          return {
+            ...rest,
+            versionRange: vulnerableVersionRange,
+          }
+        })
       }
 
       module.exports = {
@@ -3021,6 +3025,8 @@ module.exports = /******/ (function (modules, runtime) {
       async function start() {
         const { data } = await getSecurityVulnerabilities()
         const vulnerabilityAlerts = formatVulnerabilityAlerts(data)
+
+        if (!vulnerabilityAlerts) return console.log('No security vulnerabilities found.')
 
         if (vulnerabilityAlerts.length > 0) {
           const introMsg = getIntroMsg(vulnerabilityAlerts.length)
