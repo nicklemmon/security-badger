@@ -1,0 +1,15 @@
+name: 'Security Badger'
+description: 'Badger your team to about known NPM security vulnerabilities'
+
+branding:
+  icon: 'bell'
+  color: 'purple'
+
+inputs:
+  slackChannel:
+    description: 'Slack Channel that will see posted Security Badger messages'
+    required: true
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

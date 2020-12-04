@@ -1,3 +1,4 @@
+// TODO: can't this be done within the GraphQL query itself?
 export function formatVulnerabilityAlerts(data) {
   const {
     repository: {
@@ -5,5 +6,15 @@ export function formatVulnerabilityAlerts(data) {
     },
   } = data
 
-  return edges.map(edge => edge.node.securityAdvisory)
+  return edges.map(edge => {
+    const advisory = edge.node.securityAdvisory
+    const { vulnerabilities, ...rest } = advisory
+    const firstVulnerabilityNode = vulnerabilities.edges[0].node
+    const vulnerableVersionRange = firstVulnerabilityNode.vulnerableVersionRange
+
+    return {
+      ...rest,
+      versionRange: vulnerableVersionRange,
+    }
+  })
 }

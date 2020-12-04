@@ -17,10 +17,17 @@ export function getSecurityVulnerabilities() {
             securityAdvisory {
               permalink
               summary
-              updatedAt
+              severity
               publishedAt
-              vulnerabilities {
-                totalCount
+              vulnerabilities(first: 99) {
+              	edges {
+                  node {
+                    package {
+                      name
+                    }
+                    vulnerableVersionRange
+                  }
+                }
               }
             }
           }
