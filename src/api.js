@@ -1,14 +1,14 @@
-import axios from 'axios'
-import {
+const axios = require('axios')
+const {
   GITHUB_API_URL,
   GITHUB_ORGANIZATION,
   GITHUB_REPOSITORY,
   GITHUB_TOKEN,
   SLACK_CHANNEL,
   SLACK_WEBHOOK_URL,
-} from './constants.js'
+} = require('./constants.js')
 
-export function getSecurityVulnerabilities() {
+function getSecurityVulnerabilities() {
   const query = `query {
     repository(owner: "${GITHUB_ORGANIZATION}", name: "${GITHUB_REPOSITORY}") {
       vulnerabilityAlerts(first: 99) {
@@ -48,7 +48,7 @@ export function getSecurityVulnerabilities() {
     .catch(err => console.log(err))
 }
 
-export function postSlackMsg({ text, blocks } = {}) {
+function postSlackMsg({ text, blocks } = {}) {
   if (!SLACK_WEBHOOK_URL)
     throw new Error('No SLACK_WEBHOOK_URL supplied - messages cannot be posted.')
 
@@ -64,4 +64,9 @@ export function postSlackMsg({ text, blocks } = {}) {
       blocks,
     },
   }).catch(err => console.log(err))
+}
+
+module.exports = {
+  getSecurityVulnerabilities,
+  postSlackMsg,
 }

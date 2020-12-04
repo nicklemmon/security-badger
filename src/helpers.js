@@ -1,5 +1,5 @@
 // TODO: can't this be done within the GraphQL query itself?
-export function formatVulnerabilityAlerts(data) {
+function formatVulnerabilityAlerts(data) {
   const {
     repository: {
       vulnerabilityAlerts: { edges },
@@ -17,4 +17,8 @@ export function formatVulnerabilityAlerts(data) {
       versionRange: vulnerableVersionRange,
     }
   })
+}
+
+module.exports = {
+  formatVulnerabilityAlerts,
 }

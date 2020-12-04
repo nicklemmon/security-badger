@@ -1,6 +1,6 @@
-import { GITHUB_REPOSITORY } from './constants.js'
-import { getSecurityVulnerabilities, postSlackMsg } from './api.js'
-import { formatVulnerabilityAlerts } from './helpers.js'
+const { GITHUB_REPOSITORY } = require('./constants.js')
+const { getSecurityVulnerabilities, postSlackMsg } = require('./api.js')
+const { formatVulnerabilityAlerts } = require('./helpers.js')
 
 function getIntroMsg(numberOfVulnerabilities) {
   if (numberOfVulnerabilities === 1)

@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 module.exports = {
   extends: ['standard', 'plugin:node/recommended', 'plugin:prettier/recommended'],
   env: {

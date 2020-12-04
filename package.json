@@ -4,13 +4,11 @@
   "description": "GitHub Action that posts to Slack with relevant GitHub security alerts",
   "main": "index.js",
   "engines": {
-    "node": ">=14.4.0"
+    "node": ">=12.0.0"
   },
-  "engineStrict": true,
   "scripts": {
     "start": "node ./src/index.js"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nicklemmon/security-badger.git"
