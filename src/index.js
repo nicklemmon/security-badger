@@ -12,7 +12,6 @@ function getIntroMsg(numberOfVulnerabilities) {
 async function start() {
   const { data } = await getSecurityVulnerabilities()
   const vulnerabilityAlerts = formatVulnerabilityAlerts(data)
-  console.log('vulnerabilityAlerts', vulnerabilityAlerts)
 
   if (vulnerabilityAlerts.length > 0) {
     const introMsg = getIntroMsg(vulnerabilityAlerts.length)
