@@ -2,7 +2,7 @@
 
 Note, in order for this to work, be sure to have a token available with required permissions to
 leverage the GitHub GraphQL API:
-[Permissions for the GitHub Token](https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#permissions-for-the-github_token)
+[Authenticating with GraphQL](https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql)
 
 ## Example Usage
 
@@ -18,7 +18,7 @@ jobs:
   pr-reviews-reminder:
     runs-on: ubuntu-latest
     steps:
-      uses: nicklemmon/security-badger@v0.0.1-alpha
+      uses: nicklemmon/security-badger@v0.0.13-alpha
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
