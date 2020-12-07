@@ -1,5 +1,9 @@
 # Security Badger
 
+Note, in order for this to work, be sure to have a token available with required permissions to
+leverage the GitHub GraphQL API:
+[Permissions for the GitHub Token](https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#permissions-for-the-github_token)
+
 ## Example Usage
 
 ```yml
