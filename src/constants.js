@@ -1,5 +1,5 @@
 const GITHUB_API_URL = 'https://api.github.com/graphql'
-const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY
+const GITHUB_REPOSITORY = process.env.GITHUB_REPO
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL
 const SLACK_CHANNEL = process.env.SLACK_CHANNEL || process.env.INPUT_SLACKCHANNEL
