@@ -9,8 +9,10 @@ const {
 
 function getSecurityVulnerabilities() {
   const repoArr = GITHUB_REPOSITORY.split('/')
+  const owner = repoArr[0].toLowerCase()
+  const name = repoArr[1].toLowerCase()
   const query = `query {
-    repository(owner: "${repoArr[0]}", name: "${repoArr[1]}") {
+    repository(owner: "${owner}", name: "${name}") {
       vulnerabilityAlerts(first: 99) {
         edges {
           node {
@@ -35,6 +37,7 @@ function getSecurityVulnerabilities() {
       }
     }
   }`
+  console.log(query)
 
   return axios({
     url: GITHUB_API_URL,
